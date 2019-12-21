@@ -9,6 +9,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.web.client.RestClientException;
 
+import static org.hamcrest.Matchers.startsWith;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -28,7 +29,8 @@ public class EndpointControllerTests {
 
         mockMvc.perform(get("/"))
             .andExpect(status().isOk())
-            .andExpect(MockMvcResultMatchers.content().string("Number of requests 1"));
+            .andExpect(MockMvcResultMatchers.content().string(
+                startsWith("Number of requests 1")));
     }
 
     @Test
