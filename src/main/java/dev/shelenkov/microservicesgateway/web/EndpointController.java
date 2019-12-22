@@ -15,9 +15,12 @@ public class EndpointController {
     @Value("${instance.id}")
     private int instanceId;
 
+    @Value("${secret}")
+    private String secret;
+
     @GetMapping("/")
     public String getRequestsCount() {
-        return String.format("Number of requests %s (gateway %d)",
-            backendAdapter.getRequests(), instanceId);
+        return String.format("Number of requests %s (gateway %d, secret %s)",
+            backendAdapter.getRequests(), instanceId, secret);
     }
 }
